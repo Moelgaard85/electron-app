@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <style media="screen">
+    * {
+      cursor: default;
+    }
+
+     ::selection {
+      background-color: #E3F2FD;
+    }
+
+    body {
+      background-color: #E3F2FD;
+      /*-webkit-user-select: none;*/
+      /*-webkit-app-region: drag;*/
+      font: caption;
+    }
+    /*select {*/
+    /*-webkit-app-region: no-drag;*/
+    /*}*/
+  </style>
+</head>
+
+<body>
+  <h1 style="color: red">HTML Content loaded from index.html</h1>
+
+
+  <!--OPEN NEW WINDOW-->
+  <h3>
+    <a href="https://google.com"
+      target="_blank">
+      Google</a>
+  </h3>
+
+
+  <!--NAVIGATION-->
+  HOME: <a href="index.html">HOME</a><br> CHILD: <a href="child.html">CHILD</a>
+  <br>
+
+
+  <!--MENU-->
+  <textarea rows="2"
+    cols="30"></textarea>
+
+
+  <!--  
+  DOWNLOAD IMAGE:
+  <a href="https://pbs.twimg.com/profile_images/604644048/sign051.gif"
+    download>download</a>-->
+
+
+  <!-- All of the Node.js APIs are available in this renderer process. -->
+  <!--We are using Node.js
+  <script>
+    document.write(process.versions.node)
+  </script>, Chromium
+  <script>
+    document.write(process.versions.chrome)
+  </script>, and Electron
+  <script>
+    document.write(process.versions.electron)
+  </script>.
+
+  <select>
+    <option value="1">option 1</option>
+    <option value="2">option 2</option>
+  </select>-->
+
+  <p>
+    lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
+    lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
+  </p>
+
+</body>
+
+<script>
+  // You can also require other files to run in this process
+  require('./renderer.js')
+</script>
+
+</html>
