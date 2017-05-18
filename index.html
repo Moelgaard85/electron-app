@@ -22,6 +22,16 @@
     /*select {*/
     /*-webkit-app-region: no-drag;*/
     /*}*/
+
+    webview {
+      height: 200px;
+      border: 1px solid black;
+    }
+
+    input,
+    button {
+      font-size: 1em;
+    }
   </style>
 </head>
 
@@ -71,10 +81,24 @@
     <option value="2">option 2</option>
   </select>-->
 
-  <p>
-    lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-    lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-  </p>
+
+
+
+  <!--WEBVIEW-->
+  <!--<webview id="webview1"
+    src="page1.html"></webview>
+
+  <hr>
+
+  <input id="url"
+    type="text"
+    placeholder="URL to load">
+
+  <button id="load"
+    type="button">load</button>
+
+  <h4 id="currentPage"></h4>-->
+
 
 
 
@@ -86,9 +110,71 @@
 
 
 
+  <!--ZOOM USING webFrame-->
+  <!--<img src="http://placehold.it/200x200"
+    alt="placeholder">
+  <hr>
+  <button type="button"
+    id="zoom_up">increase zoom</button>
+  <button type="button"
+    id="zoom_down">decrease zoom</button>
+  <button type="button"
+    id="zoom_reset">reset zoom</button>-->
+
 </body>
 
+
+
 <script>
+  // WEBVIEW
+  // const webview = document.getElementById("webview1");
+
+  // webview.addEventListener('did-start-loading', () => {
+  //   console.log('Started loading webview');
+  // })
+  // webview.addEventListener('did-stop-loading', () => {
+  //   console.log('Finished loading webview');
+
+  //   webview.insertCSS('body{background:orange !important;}')
+  // })
+
+  // const url = document.getElementById("url");
+  // load.addEventListener('click', () => {
+  //   console.log('Started loading webview');
+  //   webview.loadURL(url.value);
+  //   url.value = '';
+  // })
+  // webview.addEventListener('did-navigate', (e) => {
+  //   currentPage.innerHTML = e.url
+  // })
+  // webview.addEventListener('did-fail-load', (e) => {
+  //   currentPage.innerHTML = 'Failed to load URL'
+  // })
+
+
+
+
+
+  // ZOOM USING webFrame
+  // const {
+  //   webFrame
+  // } = require('electron')
+
+  // let zoom = 0
+  // document.getElementById("zoom_up").addEventListener('click', () => {
+  //   webFrame.setZoomLevel(++zoom)
+  // })
+  // document.getElementById("zoom_down").addEventListener('click', () => {
+  //   webFrame.setZoomLevel(--zoom)
+  // })
+  // document.getElementById("zoom_reset").addEventListener('click', () => {
+  //   webFrame.setZoomLevel(zoom = 0)
+  // })
+
+
+
+
+  // WINDOW PROXY
   // let win
   // document.getElementById("google_link").addEventListener('click', () => {
   //   // win = window.open('https://google.dk')
