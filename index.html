@@ -121,11 +121,48 @@
   <button type="button"
     id="zoom_reset">reset zoom</button>-->
 
+
 </body>
 
 
 
 <script>
+  // SHARED API
+  console.log(`Process type: ${process.type}`);
+  console.log(`Electron Version: ${process.versions.electron}`);
+  console.log(`Chrome (Chromium) Version: ${process.versions.chrome}`);
+  console.log(`Resource Path: ${process.resourcesPath}`);
+
+  // MAKE RENDERER PROCESS CRASH/HANGING
+  // setTimeout(() => {
+  //   console.log('hanging!');
+  //   process.hang()
+  // }, 5000)
+
+  // setTimeout(() => {
+  //   console.log('crashing!');
+  //   process.crash()
+  // }, 3000)
+
+  // console.log('renderer: process.getProcessMemoryInfo(): ', process.getProcessMemoryInfo());
+
+  // const electron = require('electron')
+  // const displays = electron.screen.getAllDisplays()
+  // console.log(`displays[0].size.width: ${displays[0].size.width}, displays[0].size.height: ${displays[0].size.height}`);
+  // console.log(`displays[0].bounds.x: ${displays[0].bounds.x}, displays[0].bounds.y: ${displays[0].bounds.y}`);
+
+  // console.log(`displays[1].size.width: ${displays[1].size.width}, displays[1].size.height: ${displays[1].size.height}`);
+  // console.log(`displays[1].bounds.x: ${displays[1].bounds.x}, displays[1].bounds.y: ${displays[1].bounds.y}`);
+
+  // electron.screen.on('display-metrics-changed', (e, display, changeMetrics) => {
+  //   console.log('display: ', display);
+  //   console.log('changeMetrics: ', changeMetrics);
+  // })
+
+
+
+
+
   // WEBVIEW
   // const webview = document.getElementById("webview1");
 

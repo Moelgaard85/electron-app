@@ -84,24 +84,47 @@ function createTray() {
 function createWindow(e) {
   // console.log('creating mainWindow. maxOC launchInfo: ', e);
 
-  let winState = windowStateKeeper({
-    defaultWidth: 414,
-    defaultHeight: 736
-  });
+
+  // SHARED API
+  const primary_display = electron.screen.getPrimaryDisplay()
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: winState.width,
-    height: winState.height,
-    x: winState.x,
-    y: winState.y,
-    // show: false,
+    width: primary_display.width,
+    height: primary_display.height,
+    x: primary_display.bounds.x,
+    y: primary_display.bounds.y,
     backgroundColor: '#536DFE',
-    // frame: false,
+    frame: false,
     resizable: false
   });
 
-  winState.manage(mainWindow);
+
+
+
+  // // WINDOW STATE KEEPER
+  // let winState = windowStateKeeper({
+  //   defaultWidth: 414,
+  //   defaultHeight: 736
+  // });
+
+  // // Create the browser window.
+  // mainWindow = new BrowserWindow({
+  //   width: winState.width,
+  //   height: winState.height,
+  //   x: winState.x,
+  //   y: winState.y,
+  //   // show: false,
+  //   backgroundColor: '#536DFE',
+  //   // frame: false,
+  //   resizable: false
+  // });
+
+  // winState.manage(mainWindow);
+
+
+
+
 
   // Create the child browser window.
   // childWindow = new BrowserWindow({
@@ -158,6 +181,30 @@ function createWindow(e) {
   //   console.log('context: selectedText: ' + params.selectionText);
   // });
 
+
+
+
+
+
+
+
+
+
+  // SHARED API
+  console.log(`Process type: ${process.type}`);
+  console.log(`Electron Version: ${process.versions.electron}`);
+  console.log(`Chrome (Chromium) Version: ${process.versions.chrome}`);
+  console.log(`Resource Path: ${process.resourcesPath}`);
+
+
+  // HANDLE RENDERER PROCESS CRASH/HANGING
+  // mainWindowContents.on('crashed', () => {
+  //   console.log('MainWindow renderer process crashed. Reloading!');
+  //   mainWindow.reload();
+  // })
+
+
+  // console.log('main: process.getProcessMemoryInfo(): ', process.getProcessMemoryInfo());
 
 
 
