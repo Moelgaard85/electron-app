@@ -8,7 +8,8 @@ const {
   globalShortcut,
   Menu,
   MenuItem,
-  Tray
+  Tray,
+  ipcMain
 } = electron;
 // const app = electron.app
 // Module to create native browser window.
@@ -41,6 +42,16 @@ if (debug) {
 let mainWindow;
 // let childWindow;
 
+
+
+
+
+// IPC listen for renderer channels
+
+// ipcMain.on('channel1', (e, args) => {
+//   console.log('Main: recieved channel1: ', args);
+//   e.sender.send('channel1', 'Main: Message recieved!');
+// });
 
 
 
@@ -147,128 +158,14 @@ function createWindow(e) {
   //   console.log('context: selectedText: ' + params.selectionText);
   // });
 
+
+
+
   // MENU - RIGHT CLICK CONTEXT MENU
   mainWindowContents.on('context-menu', (e) => {
     e.preventDefault();
     contextMenu.popup();
   });
-
-  mainWindowContents.on('did-finish-load', () => {
-    console.log("Google.com Loaded");
-
-
-    // DIALOG
-    showDialog();
-
-
-    // COOKIES ALL
-    // defaultSession.cookies.get({}, (error, cookies) => {
-    //   console.log('cookies: ', cookies);
-    // });
-
-    // COOKIES SPECIFIC
-    // defaultSession.cookies.get({
-    //   name: 'cookie1'
-    // }, (error, cookies) => {
-    //   console.log('cookies: ', cookies);
-    // });
-
-  });
-}
-// createWindow end
-
-
-
-
-
-
-
-// MENU - importing array from mainMenu.js
-
-let mainMenu = Menu.buildFromTemplate(require('./mainMenu'));
-let contextMenu = Menu.buildFromTemplate(require('./contextMenu'));
-
-
-
-
-
-
-
-
-
-// DIALOG
-function showDialog() {
-  // dialog.showOpenDialog({
-  //   defaultPath: 'downloads',
-  //   buttonLabel: 'Vælg dit billede'
-  // }, (openPath) => {
-  //   console.log('openPath: ', openPath);
-  // });
-
-  // dialog.showSaveDialog({
-  //   defaultPath: 'downloads'
-  // }, (filename) => {
-  //   console.log('filename: ', filename);
-  // });
-
-  // let buttons = ['Yes', 'No', 'Maybe'];
-  // dialog.showMessageBox({
-  //   buttons: buttons,
-  //   title: 'Electron Message Dialog',
-  //   message: 'Please select an answer',
-  //   detail: 'A more descriptive message'
-  // }, (buttonIndex) => {
-  //   console.log('buttonIndex: ', buttons[buttonIndex]);
-  // });
-
-
-
-
-  // SHORTCUTS (accelerator)
-
-  // globalShortcut.register('g', () => {
-  //   console.log('user pressed g');
-  // });
-
-  // globalShortcut.register('CommandOrControl+g', () => {
-  //   console.log('user pressed command + g');
-
-  //   globalShortcut.unregister('CommandOrControl+g');
-  //   console.log('Key unregistered again!');
-  // });
-
-
-
-
-
-
-
-
-
-  // DOWNLOAD
-  // defaultSession.on('will-download', (e, downloadItem, webContents) => {
-  //   console.log('downloadItem: ', downloadItem.getFilename());
-  //   // Get filename
-  //   let file = downloadItem.getFilename();
-  //   // Set download path
-  //   downloadItem.setSavePath('downloads/' + file);
-  //   // Get download size
-  //   let size = downloadItem.getTotalBytes();
-  //   // Get download progress
-  //   downloadItem.on('updated', (e, state) => {
-  //     let progress = Math.round((downloadItem.getReceivedBytes() / size) * 100);
-  //     if (state === 'progressing') {
-  //       console.log('progress %: ' + progress);
-  //     }
-  //   });
-  //   // Done
-  //   downloadItem.once('done', (e, state) => {
-  //     if (state === 'completed') {
-  //       console.log('progress completed!');
-  //     }
-  //   });
-  // });
-
 
 
 
@@ -325,15 +222,148 @@ function showDialog() {
     mainWindow = null;
   });
 
-  // Emitted when the window is closed.
-  // childWindow.on('closed', function() {
-  // console.log('childWindow closed');
-  // Dereference the window object, usually you would store windows
-  // in an array if your app supports multi windows, this is the time
-  // when you should delete the corresponding element.
-  // childWindow = null
-  // })
+
+
+
+  mainWindowContents.on('did-finish-load', () => {
+    console.log("mainWindowContents did finish load...");
+
+
+    // IPC SEND FROM MAIN
+    // mainWindowContents.send('private', {
+    //   message: 'Message from Main process to mainWindow',
+    //   from: 'main.js'
+    // });
+
+
+
+    // DIALOG
+    // showDialog();
+
+
+
+    // COOKIES ALL
+    // defaultSession.cookies.get({}, (error, cookies) => {
+    //   console.log('cookies: ', cookies);
+    // });
+
+    // COOKIES SPECIFIC
+    // defaultSession.cookies.get({
+    //   name: 'cookie1'
+    // }, (error, cookies) => {
+    //   console.log('cookies: ', cookies);
+    // });
+
+  });
 }
+// createWindow end
+
+
+
+
+
+
+
+// MENU - importing array from mainMenu.js
+
+let mainMenu = Menu.buildFromTemplate(require('./mainMenu'));
+let contextMenu = Menu.buildFromTemplate(require('./contextMenu'));
+
+
+
+
+
+
+
+
+
+// DIALOG
+// function showDialog() {
+// dialog.showOpenDialog({
+//   defaultPath: 'downloads',
+//   buttonLabel: 'Vælg dit billede'
+// }, (openPath) => {
+//   console.log('openPath: ', openPath);
+// });
+
+// dialog.showSaveDialog({
+//   defaultPath: 'downloads'
+// }, (filename) => {
+//   console.log('filename: ', filename);
+// });
+
+// let buttons = ['Yes', 'No', 'Maybe'];
+// dialog.showMessageBox({
+//   buttons: buttons,
+//   title: 'Electron Message Dialog',
+//   message: 'Please select an answer',
+//   detail: 'A more descriptive message'
+// }, (buttonIndex) => {
+//   console.log('buttonIndex: ', buttons[buttonIndex]);
+// });
+// }
+
+
+
+
+
+// SHORTCUTS (accelerator)
+
+// globalShortcut.register('g', () => {
+//   console.log('user pressed g');
+// });
+
+// globalShortcut.register('CommandOrControl+g', () => {
+//   console.log('user pressed command + g');
+
+//   globalShortcut.unregister('CommandOrControl+g');
+//   console.log('Key unregistered again!');
+// });
+
+
+
+
+
+
+
+
+
+// DOWNLOAD
+// defaultSession.on('will-download', (e, downloadItem, webContents) => {
+//   console.log('downloadItem: ', downloadItem.getFilename());
+//   // Get filename
+//   let file = downloadItem.getFilename();
+//   // Set download path
+//   downloadItem.setSavePath('downloads/' + file);
+//   // Get download size
+//   let size = downloadItem.getTotalBytes();
+//   // Get download progress
+//   downloadItem.on('updated', (e, state) => {
+//     let progress = Math.round((downloadItem.getReceivedBytes() / size) * 100);
+//     if (state === 'progressing') {
+//       console.log('progress %: ' + progress);
+//     }
+//   });
+//   // Done
+//   downloadItem.once('done', (e, state) => {
+//     if (state === 'completed') {
+//       console.log('progress completed!');
+//     }
+//   });
+// });
+
+
+
+
+// Emitted when the window is closed.
+// childWindow.on('closed', function() {
+// console.log('childWindow closed');
+// Dereference the window object, usually you would store windows
+// in an array if your app supports multi windows, this is the time
+// when you should delete the corresponding element.
+// childWindow = null
+// })
+
 
 
 // This method will be called when Electron has finished
@@ -347,7 +377,18 @@ app.on('ready', () => {
 
   // Tray
   createTray();
+
+  // Monitor power stages
+  // electron.powerMonitor.on('suspend', () => {
+  //   console.log('System going to sleep..');
+  // });
+  // electron.powerMonitor.on('resume', () => {
+  //   console.log('System waking from sleep..');
+  // });
+
 });
+
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -356,7 +397,10 @@ app.on('window-all-closed', function() {
   if (process.platform !== 'darwin') {
     app.quit();
   }
-})
+});
+
+
+
 
 app.on('activate', function() {
   // On OS X it's common to re-create a window in the app when the
@@ -364,7 +408,7 @@ app.on('activate', function() {
   if (mainWindow === null) {
     createWindow();
   }
-})
+});
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
