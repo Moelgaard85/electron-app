@@ -32,6 +32,21 @@
     button {
       font-size: 1em;
     }
+
+    .box {
+      border: 5px dashed black;
+      padding: 2px;
+      color: white;
+    }
+
+    #filebox {
+      background-color: green;
+      margin-bottom: 5px;
+    }
+
+    #trashbox {
+      background-color: red;
+    }
   </style>
 </head>
 
@@ -122,11 +137,61 @@
     id="zoom_reset">reset zoom</button>-->
 
 
+
+
+
+  <!--SHELL-->
+  <!--<div id="filebox"
+    class="box">
+    <h2>Open file</h2>
+  </div>
+  <div id="trashbox"
+    class="box">
+    <h2>Trash file</h2>
+  </div>-->
+
+
+
 </body>
 
 
 
 <script>
+  // SHELL
+  // const {
+  //   shell
+  // } = require('electron')
+
+
+  // // shell.openExternal('https://stackacademy.tv')
+
+
+  // let myFile = null
+  // const fileBox = document.getElementById("filebox");
+  // const trashBox = document.getElementById("trashbox");
+  // fileBox.ondragover = fileBox.ondragend = fileBox.ondragleave =
+  //   trashBox.ondragover = trashBox.ondragend = trashBox.ondragleave = () => {
+  //     return false;
+  //   }
+  // fileBox.ondrop = (e) => {
+  //   myFile = e.dataTransfer.files[0].path
+  //   console.log('e.dataTransfer.files: ', e.dataTransfer.files);
+  //   console.log('myFile: ', myFile);
+  //   shell.openItem(myFile)
+  //   return false;
+  // }
+  // trashBox.ondrop = (e) => {
+  //   myFile = e.dataTransfer.files[0].path
+  //   console.log('e.dataTransfer.files: ', e.dataTransfer.files);
+  //   console.log('myFile: ', myFile);
+  //   shell.moveItemToTrash(myFile)
+  //   return false;
+  // }
+
+
+
+
+
   // SHARED API
   console.log(`Process type: ${process.type}`);
   console.log(`Electron Version: ${process.versions.electron}`);

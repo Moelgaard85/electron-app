@@ -89,38 +89,38 @@ function createWindow(e) {
   const primary_display = electron.screen.getPrimaryDisplay()
 
   // Create the browser window.
-  mainWindow = new BrowserWindow({
-    width: primary_display.width,
-    height: primary_display.height,
-    x: primary_display.bounds.x,
-    y: primary_display.bounds.y,
-    backgroundColor: '#536DFE',
-    frame: false,
-    resizable: false
-  });
+  // mainWindow = new BrowserWindow({
+  //   width: primary_display.width,
+  //   height: primary_display.height,
+  //   x: primary_display.bounds.x,
+  //   y: primary_display.bounds.y,
+  //   backgroundColor: '#536DFE',
+  //   frame: false,
+  //   resizable: false
+  // });
 
 
 
 
   // // WINDOW STATE KEEPER
-  // let winState = windowStateKeeper({
-  //   defaultWidth: 414,
-  //   defaultHeight: 736
-  // });
+  let winState = windowStateKeeper({
+    defaultWidth: 414,
+    defaultHeight: 736
+  });
 
   // // Create the browser window.
-  // mainWindow = new BrowserWindow({
-  //   width: winState.width,
-  //   height: winState.height,
-  //   x: winState.x,
-  //   y: winState.y,
-  //   // show: false,
-  //   backgroundColor: '#536DFE',
-  //   // frame: false,
-  //   resizable: false
-  // });
+  mainWindow = new BrowserWindow({
+    width: winState.width,
+    height: winState.height,
+    x: winState.x,
+    y: winState.y,
+    // show: false,
+    backgroundColor: '#536DFE',
+    // frame: false,
+    resizable: false
+  });
 
-  // winState.manage(mainWindow);
+  winState.manage(mainWindow);
 
 
 
